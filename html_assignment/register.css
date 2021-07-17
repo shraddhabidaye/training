@@ -1,0 +1,109 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family:"Times New Roman", Times, serif;
+  }
+.header-style
+{
+  background-color: black;
+  text-decoration-color: white;
+  color: white;
+  text-align: center;
+  height: 70px;
+ }
+
+#psswd
+{
+  width: 350px;
+  height: 40px;
+  border: 4px solid black;
+}
+
+td{
+  margin-bottom: 10px;
+
+}
+#input-type
+{
+height: 40px;
+border: 4px solid black;
+ }
+
+.footer {
+margin-top: 570px;
+height: 100px;
+background-color: lightblue;
+color: white;
+text-align: center;
+color: black;
+}
+
+.section-style
+{
+  background-color: #f1f1f1;
+  height: 100px;
+  color: #313945;
+  padding: 50px;
+}
+
+#h2font
+{
+  font-style: italic;
+  font-family: serif;
+  padding-top: 30px;
+}
+
+ul{
+  list-style: none;
+  align-items: left;
+}
+
+.fa fa-check{
+
+}
+
+#b1
+{
+  background-color: darkblue;
+  color: white;
+  width: 170px;
+  height: 45px;
+  font-size: 15px;
+}
+
+#b2
+{
+  background-color: yellow;
+  color: black;
+  width: 350px;
+  height: 45px;
+  font-size: 15px;
+}
+
+#b3
+{
+  background-color:black;
+  color: white;
+  width: 350px;
+  height: 45px;
+  font-size: 15px;
+}
+
+.section-left
+{
+  float: left;
+  color: black;
+}
+
+.section-right
+{
+  float: right;
+  background-color: white;
+  border: 1px solid black;
+  width: 50%;
+  height: 450px;
+}
+
+.section-inside {
+  margin-top: 50px;
+}
