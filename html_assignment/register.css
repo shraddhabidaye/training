@@ -46,19 +46,32 @@ color: black;
 
 .section-top
 {
-  background-color: #f1f1f1;
-  height: 100px;
+  background: #f1f1f1;
+  height:auto;
+  width: 100%;
   color: #313945;
-  padding: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+  margin: none;
+  padding-top: +25px;
+
 }
 
-#h2font
+#h3-font
 {
   font-style: italic;
   font-family: serif;
-  padding-top: 30px;
-}
+  padding-top: +30px;
+  margin-left: 20%;
+  max-width: 750px;
 
+
+}
+#h1-font{
+  font-size: +75px;
+  font-style: bold;
+
+}
 ul{
   list-style: none;
   align-items: left;
@@ -86,6 +99,9 @@ ul{
   font-size: 15px;
 }
 
+.container{
+
+}
 #b3
 {
   background-color:black;
