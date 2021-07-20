@@ -45,23 +45,23 @@
                 <form>
                   <div class="row">
                     <div class="col-md-6 col-sm-12">
-                      <input type="text" id="input-type" name="first_name" placeholder="Enter first name">
+                      <input type="text" id="input-type" name="first_name" placeholder="Enter first name" class="forminput"/>
                     </div>
                     <div class="col-md-6 col-sm-12">
-                      <input type="text" id="input-type" name="last_name" placeholder="Enter last name"/>
+                      <input type="text" id="input-type" name="last_name" placeholder="Enter last name" class="forminput"/>
                     </div>
                     <div class="col-md-6 col-sm-12">
-                      <input type="text" id="input-type" name="company_name" placeholder="Enter company name">
+                      <input type="text" id="input-type" name="company_name" placeholder="Enter company name" class="forminput" />
                     </div>
                     <div class="col-md-6 col-sm-12">
-                      <input type="text" id="input-type" name="email" placeholder="Enter email"/>
+                      <input type="text" id="input-type" name="email" placeholder="Enter email" class="forminput"/>
                     </div>
                     <div class="col-sm-12">
-                      <input type="text" id="psswd" name="password" placeholder="Enter password"/>
+                      <input type="text" id="psswd" name="password" placeholder="Enter password" class="forminput"/>
                     </div>
                     <div style="color:grey;">
                       <div style="text-align:left;margin:10px 0px 0px 10px">
-                      <p><b>password strength:</b></p>
+                      <p>password strength:</p>
                     </div>
 
                       <div>
@@ -82,25 +82,24 @@
                       </div>
                     </div>
 
-                    <div class="policy-container">
-                      <div class="policy-section">
-                        <input type="checkbox">
-                          <label><b>Are you an agency?</b> (additional WebOps tools for agency developers</label>
-                        </input>
+                    <div>
+                      <p class="chkbox">
+                      <ul style="list-style-type:none;">  <li>
+
+
+                      <input type="checkbox" class="chkbox">Are you an agency?<small>(additional WebOps tools for agency developers</small>.
+
+                      </li>
+
+                        <li><input type="checkbox" class="chkbox">Are you an EDU?<small>(additional features to manage your school's sites)</small>.
+                        </li>
+
+                          <li style="margin-left:-38%"><input type="checkbox" class="chkbox"><small>I agree to Pantheon's</small> <a href="#">Terms of Use</a>.
+                          </li>
+                        </p>
                       </div>
-                      <div class="policy-section">
-                        <input type="checkbox">
-                          <label><b>Are you an EDU? </b>(additional features to manage your school's sites)</label>
-                        </input>
-                      </div>
-                      <div class="policy-section">
-                        <input type="checkbox">
-                          <label>I agree to Pantheon's <a href="#">Terms of Use.</a></label>
-                        </input>
-                      </div>
-                    </div>
                     <button id="b2">Sign Up</button>
-                    <br><p>-----OR-----</p>
+                    <span><p>OR</p></span>
                     <button id='b3'>Connect with Google</button>
                   </div>
                 </form>
