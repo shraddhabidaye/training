@@ -19,13 +19,21 @@
 hr.pass{
   border-radius: 4px;
    border: 5px solid grey;
-   width: 230%;
-   margin-left: +15%;
+   width: 90%;
+   margin-left: +10px;
+}
+.password-status li{
+  font-style: normal;
+  font-size: 15px;
+  width: 30%;
+  line-height: 20px;
+
 }
 
-td{
-  margin-bottom: 10px;
-
+.password-status ul{
+  list-style-type: none;
+  display: flex;
+ flex-flow:row wrap;
 }
 form input {
   border: 2px solid #bac7d0;
@@ -39,11 +47,12 @@ form input {
 
 .footer {
 
-height: 100px;
+height:25%x;
 background-color: lightblue;
 color: white;
 text-align: center;
 color: black;
+padding: 25px 0px 10px 0px;
 }
 
 .section-top {
@@ -56,9 +65,6 @@ color: black;
   margin: none;
   padding-top: +25px;
 
-}
-li{
-  padding: 5px 0;
 }
 
 #h3-font
@@ -75,10 +81,6 @@ li{
   font-size: +75px;
   font-style: bold;
 
-}
-ul{
-  list-style: none;
-  align-items: left;
 }
 
 .fa fa-check{
@@ -121,12 +123,12 @@ ul{
 }
 
 #b4{
-  background-color: lightblue;
+  background-color: #bac0c1;
   color: darkblue;
   font-size: 20px
   width: 400px;
   height: 35px;
-  border: 3px solid darkblue;
+  border: 1px solid darkblue;
   padding-left: 10px;
   padding-right: 10px;
   margin-bottom: 10px;
