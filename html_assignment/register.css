@@ -123,8 +123,7 @@ padding: 25px 0px 10px 0px;
 
 }
 
-#b2
-{
+.b2{
   background-color: yellow;
   color: black;
   width: 100%;
@@ -133,20 +132,25 @@ padding: 25px 0px 10px 0px;
   margin-bottom: +5px;
 }
 
+.b2:hover{
+  background-color: black;
+  color: white;
+}
 .container{
 
 }
-#b3
-{
-  background-color:black;
-  color: white;
+.b3{
+  background-color:white;
+  color: black;
   width: 100%;
   height: 45px;
   font-size: 15px;
   margin-top: -5px;
-
+  border: 4px solid black;
 }
-
+.b3:hover{
+background-color: lightblue;
+}
 #b4{
   background-color: #eef2f3;
   color: darkblue;
@@ -164,7 +168,7 @@ padding: 25px 0px 10px 0px;
   float: left;
   color: black;
   height: auto;
-  margin-left:10%;
+  margin-left:15px;
 }
 
 .section-right
