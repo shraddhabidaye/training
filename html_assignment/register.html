@@ -27,7 +27,7 @@
                 <img src="images/img1.png" alt="computer">
                 <div>
                   <h3><b>All Pantheon Plans Include:<b></h3>
-                  <ul>
+                  <ul style="list-style-type:none">
                     <li><h3 class="fa fa-check fa-sm-6">Two Free Sandbox Sites</h3></li>
                     <li><h3 class="fa fa-check fa-sm-6">Git-Based Dev, Test, And Live Environments</h3></li>
                     <li><h3 class="fa fa-check fa-sm-6">Free HTTPS (SSL) Certificates</h3></li>
@@ -59,30 +59,34 @@
                     <div class="col-sm-12">
                       <input type="text" id="psswd" name="password" placeholder="Enter password" class="forminput"/>
                     </div>
-                    <div style="color:grey;">
+
+                    <div style="color:grey;margin-left:+5px;width:100%">
                       <div style="text-align:left;margin:10px 0px 0px 10px">
-                      <p>password strength:</p>
+                      <p>Password Strength:</p>
                     </div>
 
                       <div>
                         <hr class="pass">
                       </div>
-                      <div>
+                  </div>
+                    <div style="color:grey;margin-left:+5px;width:100%">
                           <div class="password-status">
                             <ul>
-                              <li><i class="fas fa-check-circle"></i> Min. 8 Characters</li>
-                              <li><i class="fas fa-check-circle"></i> Special Character</li>
-                              <li><i class="fas fa-check-circle"></i> 16 Characters and more</li>
-                              <li><i class="fas fa-check-circle"></i> Number</li>
-                              <li><i class="fas fa-check-circle"></i> Upper Case</li>
-                              <li><i class="fas fa-check-circle"></i> Lower Case</li>
+                              <li><i class="fa fa-check-circle"></i> Min. 8 Characters</li>
+                              <li><i class="fa fa-check-circle"></i> Special Character</li>
+                              <li><i class="fa fa-check-circle"></i> 16 Characters and more</li>
+                            </ul>
+                            <ul>
+                              <li><i class="fa fa-check-circle"></i> Number</li>
+                              <li><i class="fa fa-check-circle"></i> Upper Case</li>
+                              <li><i class="fa fa-check-circle"></i> Lower Case</li>
                             </ul>
                           </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div>
+
+
                       <div class="chkbox">
                         <ul style="list-style-type:none;">
                           <li>
@@ -91,14 +95,14 @@
                           <li>
                             <input type="checkbox" class="chkbox"> Are you an EDU?<small>(additional features to manage your school's sites)</small>.
                           </li>
-                          <li style="margin-left:-38%">
-                            <input type="checkbox" class="chkbox"><small> I agree to Pantheon's</small> <a href="#">Terms of Use</a>.
+                          <li style="margin-left:-30%">
+                            <input type="checkbox" class="chkbox"> I agree to Pantheon's <a href="#">Terms of Use</a>.
                           </li>
                         </ul>
                       </div>
-                      </div>
+                      
                     <button id="b2">Sign Up</button>
-                    <span><p>OR</p></span>
+                    <span><p style="font-weight:100">or</p></span>
                     <button id='b3'>Connect with Google</button>
                   </div>
                 </form>
@@ -112,11 +116,12 @@
 
     <div class="footer">
       <h6 style="color:#616e77;padding-bottom:+5px"><b>YOU'RE IN GOOD COMPANY:</b></h6>
-      <img src="images/ibm.svg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <img src="images/yale.svg">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <img src="images/un.svg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button id="b4" type="button">more</button>
+      <div class"foot-img">
+    <div ><img src="images/ibm.svg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+      <div><img src="images/yale.svg">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+    <div>  <img src="images/un.svg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+  <div><button id="b4" type="button">more</button></div>
     </div>
-
+</div>
   </body>
 </html>

@@ -25,18 +25,32 @@ hr.pass{
    width: 90%;
    margin-left: +10px;
 }
+.password-status{
+  margin-left: +10px;
+ width: 100%;
+}
+
 .password-status li{
   font-style: normal;
-  font-size: 15px;
+  font-size: 13px;
   width: 30%;
-  line-height: 20px;
+  line-height: 11px;
+  padding: 0px 0px;
 }
 
 .password-status ul{
   list-style-type: none;
   display: flex;
  flex-flow:row wrap;
+   font-weight: 100;
+   text-align: left;
+   width: 100%;
 }
+.foot-img{
+  display: flex;
+  flex-flow:row wrap;
+}
+
 .forminput {
   border: 2px solid #bac7d0;
   font-size: 12px!important;
@@ -49,10 +63,10 @@ hr.pass{
 
 .chkbox{
   margin-left:-5%;
-  font-style:normal;
+  font-weight: 100;
 }
-.footer {
 
+.footer {
 height:25%x;
 background-color: lightblue;
 color: white;
@@ -153,7 +167,7 @@ padding: 25px 0px 10px 0px;
 {
   float: right;
   background-color: white;
-  width:45%;
+  width:50%;
   height: auto;
   padding: 30px;
   margin-right: 20px;
