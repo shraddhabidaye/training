@@ -61,9 +61,18 @@ hr.pass{
 .chkbox{
   width: 100%;
   font-weight: 100;
-  align-s;
+  text-align: left;
+
 }
 
+.chkbox li{
+  padding: 7px 0px;
+}
+
+.fa-check{
+  color: #5ecd9f;
+  padding-right: +8px;
+}
 .footer {
 height:25%x;
 background-color: #eef2f3;
@@ -100,11 +109,6 @@ padding: 25px 0px 10px 0px;
   font-style: bold;
 
 }
-
-.fa fa-check{
-
-}
-
 #b1
 {
   background-color: darkblue;
