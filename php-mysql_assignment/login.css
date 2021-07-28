@@ -1,0 +1,12 @@
+*{
+  font-family: serif;
+}
+div{
+margin: +10px;
+align: center;
+}
+
+.main{
+ align-items: center;
+ width: auto;
+}
