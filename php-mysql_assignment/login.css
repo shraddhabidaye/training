@@ -1,12 +1,23 @@
 *{
   font-family: serif;
+  margin: 0;
+  padding: 0;
+  font-family:"Times New Roman", Times, serif;
 }
 div{
-margin: +10px;
+
 align: center;
+background-color: cyan;
+width: 50%;
+border-radius: 4px;
+margin-left: +25%;
+margin-top: +5%;
+padding-left: 0;
+padding-bottom: 5px;
 }
 
 .main{
- align-items: center;
+ 
  width: auto;
+padding-left: 0;
 }
