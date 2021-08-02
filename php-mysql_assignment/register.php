@@ -1,4 +1,4 @@
-<?php  ?>
+<?php  require_once("config.php"); ?>
 <html lang="en">
   <head>
 
@@ -12,7 +12,7 @@
     <form>
 
       <div>
-        <form action="/action_page.php">
+        <form>
           <div class="container">
             <h1>Sign Up</h1>
             <p>Please fill in this form to create an account.</p>
@@ -36,10 +36,14 @@
             <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
 
             <div class="clearfix">
-              <button type="submit" class="signupbtn">Sign Up</button>
+              <button type="submit" class="signupbtn" name="reg_user">Sign Up</button>
             </div>
           </div>
         </form>
 
   </body>
 </html>
+
+<?php
+
+ ?>
