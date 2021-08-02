@@ -1,4 +1,4 @@
-<?php ?>
+<?php require_once("config.php") ?>
 <html>
     <head>
       <title>
@@ -11,7 +11,7 @@
 
     </head>
     <body>
-     <form action="/profile.php" style="max-width:500px;margin:auto">
+     <form  style="max-width:500px;margin:auto">
       <h2>Login Form</h2>
 
 
@@ -27,7 +27,7 @@
 
       <button type="submit" class="btn">Login</button>
       <div class="container signin">
-       <p> Don\''t have an account?</p>
+       <p> Don't have an account?</p>
        <button  style="width:auto;"><a href="register.html">Sign Up</a></button>
 
       </div>
