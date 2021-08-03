@@ -36,6 +36,7 @@
   <div class="login_form">
 
      <p><a href="logout.php"><span style="color:red; float: right;">Logout</span> </a></p>
+      <p><a href="edit.php"><span style="color:blue; float: right;margin:0px 15px;">Edit</span> </a></p>
           <p> Welcome! <span style="color:#33CC00"><?php echo $email; ?></span> </p>
           <table class="table">
           <tr>

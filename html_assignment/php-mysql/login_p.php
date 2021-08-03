@@ -12,6 +12,7 @@ include_once("config.php");
     $res = $conn->query($query);
 
     $numRows = mysqli_num_rows($res);
+    print_r($numRows);
     if($numRows  == 1)
     {
 
@@ -23,6 +24,7 @@ include_once("config.php");
 
                $_SESSION["login_sess"]="1";
                 $_SESSION["login_email"]= $row['email'];
+
                header("location:account.php");
             }
 
