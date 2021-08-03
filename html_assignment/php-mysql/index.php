@@ -11,20 +11,26 @@
   </head>
   <body>
     <form method="post" action="login_backend.php" style="max-width:500px;margin:auto">
-      <h2>Login Form</h2>
+      <center><h2>Login Form</h2></center>
+
       <div class="input-container">
         <i class="fa fa-envelope icon"></i>
         <input class="input-field" type="text" placeholder="Email" name="email">
       </div>
+
       <div class="input-container">
         <i class="fa fa-key icon"></i>
         <input class="input-field" type="password" placeholder="Password" name="psw">
       </div>
+
       <button type="submit" class="btn" name="login_btn">Login</button>
-      <div class="container signin">
-      <p> Don't have an account?</p>
-      <button  style="width:auto;"><a href="register.php">Sign Up</a></button>
+
+      <div class="container-signin">
+        <p> Don't have an account?</p>
       </div>
+
+      <button class="btn"><a href="register.php" style="color:white">Sign Up</a></button>
+
     </form>
   </body>
 </html>

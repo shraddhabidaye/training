@@ -28,8 +28,8 @@
   <body>
     <div class="container">
       <div class="row">
-        <form>
-          <div class="login_form">
+        <form class="accform">
+          <div style="margin-top:+40%;width:+250%">
             <p>
               <a href="logout.php">
                 <span style="color:red; float: right;">Logout</span>
@@ -45,6 +45,7 @@
                 <?php echo $email; ?>
               </span>
             </p>
+
             <table class="table">
               <tr>
                 <th>First Name </th>
@@ -63,6 +64,7 @@
                 <td><?php echo $email; ?></td>
               </tr>
             </table>
+
           </div>
         </form>
       </div>

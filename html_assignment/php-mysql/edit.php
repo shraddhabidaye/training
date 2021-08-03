@@ -26,7 +26,7 @@
     <div class="container">
       <div class="row">
         <form  method="post" action="edit_backend.php">
-          <div class="login_form">
+          <div style="margin-top:+30%;width:+200%">
             <button type="submit" name="up_user" style=" float: right">
               <span style="color:blue; float: right;margin:0px 15px;">Update</span>
             </button>
