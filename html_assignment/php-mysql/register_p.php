@@ -29,14 +29,14 @@ if (isset($_POST['reg_user'])) {
 
   if ($user) { // if user exists
     if ($user['email'] === $email) {
-      echo "exixts";
+
       array_push($errors, "email already exists");
     }
   }
 
   // Finally, register user if there are no errors in the form
 //  if (count($errors) == 0) {
-
+$password_1 =md5($password_1);
     $query1 = "INSERT INTO users (first_name,last_name,email,mobile_no,password)
           VALUES('".$firstname."', '".$lastname."', '".$email."', ".$contact.", '".$password_1."')";
     echo $query1;
