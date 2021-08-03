@@ -1,5 +1,9 @@
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+ }
+* {
+  box-sizing: border-box;
+}
 
 .input-container {
   display: -ms-flexbox;
@@ -26,7 +30,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
   border: 2px solid dodgerblue;
 }
 
-/* Set a style for the submit button */
+
 .btn {
   background-color: dodgerblue;
   color: white;
@@ -54,13 +58,12 @@ input[type=text], input[type=password], input[type=number], input[type=email] {
   background: #f1f1f1;
 }
 
-/* Add a background color when the inputs get focus */
+
 input[type=text]:focus, input[type=password]:focus {
   background-color: #ddd;
   outline: none;
 }
 
-/* Set a style for all buttons */
 button {
   background-color: #04AA6D;
   color: white;
