@@ -2,78 +2,64 @@
 <html>
 <head>
 	<title>Insert data in MySQL database using Ajax</title>
+	<link rel="stylesheet" href="login.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 <div style="margin: auto;width: 60%;">
-	<div class="alert alert-success alert-dismissible" id="success" style="display:none;">
+	<div class="alert alert-success alert-dismissible" id="msg" style="display:none;">
 	  <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
 	</div>
-	<form id="fupForm" name="form1" method="post">
-		<div class="form-group">
-			<label for="name">Name:</label>
-			<input type="text" class="form-control" id="fname" placeholder="Name" name="name1">
-		</div>
-    <div class="form-group">
-			<label for="name"> L Name:</label>
-			<input type="text" class="form-control" id="lname" placeholder="Name" name="name2">
-		</div>
-		<div class="form-group">
-			<label for="email">Email:</label>
-			<input type="email" class="form-control" id="email" placeholder="Email" name="email">
-		</div>
-		<div class="form-group">
-			<label for="contact">Phone:</label>
-			<input type="text" class="form-control" id="contact" placeholder="Phone" name="contact">
-		</div>
-		<div class="form-group" >
-			<label for="pwd">password:</label>
-      <input type="password" class="form-control" id="pass1" placeholder="Phone" name="pass1">
-		</div>
-    <div class="form-group" >
-			<label for="pwd">password again:</label>
-      <input type="password" class="form-control" id="pass2" placeholder="Phone" name="pass2">
-		</div>
-		<input type="button" name="save" class="btn btn-primary" value="Save to database" id="butsave">
-	</form>
-</div>
+	<div>
+		<form id="userForm" method="post">
+			<div class="container">
+				<div class="container1">
+					<h1>Sign Up</h1>
+					<p>Please fill in this form to create an account.</p>
+					<hr>
+					<label for="first_name"><b>First Name:</b></label>
+					<input type="text" placeholder="first name" name="name1" required>
 
-<script>
-$(document).ready(function() {
-	$('#butsave').on('click', function() {
-		$("#butsave").attr("disabled", "disabled");
-		var fname = $('#name1').val();
-    	var lname = $('#name2').val();
-      	var contact = $('#contact').val();
-        	var pass1 = $('#pass1').val();
-		var email = $('#email').val();
+					<label for="last_name"><b>Last Name:</b></label>
+					<input type="text" placeholder="last name" name="name2" required>
 
-		if(fname!="" && lname!="" && contact!="" && pass1!="" && email!=""){
-			$.ajax({
+					<label for="mobile"><b>Contact No.:</b></label>
+					<input type="number" placeholder="contact no." name="num1" required>
+
+					<label for="email"><b>Email</b></label>
+					<input type="email" placeholder="Enter Email" name="email" required>
+
+					<label for="psw"><b>Password</b></label>
+					<input type="password" placeholder="Enter Password" name="psw" required>
+
+					<label for="psw-repeat"><b>Repeat Password</b></label>
+					<input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+
+					<div class="clearfix">
+						<button type="submit" name="submit">Sign Up</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+<script type="text/javascript">
+$(document).on('submit','#userForm',function(e){
+				e.preventDefault();
+
+				$.ajax({
+				method:"POST",
 				url: "save.php",
-				type: "POST",
-				data: {
-					fname: fname,
-          lname: lname,
-          contact: contact,
-          pass1: pass1,
-					email: email,
-				},
-        async: true,
-        contentType: false,
-        processData: false,
-				cache: false,
-				success: function(returndata){
-          alert(returndata);
-				}
-			});
-		}
-		else{
-			alert('Please fill all the field !');
-		}
-	});
+				data:$(this).serialize(),
+				success: function(data){
+				$('#msg').html(data);
+				$('#userForm').find('input').val('')
+		}});
 });
+
 </script>
+</body>
 </body>
 </html>
