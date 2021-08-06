@@ -12,6 +12,7 @@
 	<div class="alert alert-success alert-dismissible" id="msg" style="display:none;">
 	  <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
 	</div>
+
 	<div>
 		<form id="userForm" method="post">
 			<div class="container">
@@ -26,7 +27,7 @@
 					<input type="text" placeholder="last name" name="name2" required>
 
 					<label for="mobile"><b>Contact No.:</b></label>
-					<input type="number" placeholder="contact no." name="num1" required>
+					<input type="number" placeholder="contact no." name="contact" required>
 
 					<label for="email"><b>Email</b></label>
 					<input type="email" placeholder="Enter Email" name="email" required>
@@ -54,7 +55,9 @@ $(document).on('submit','#userForm',function(e){
 				url: "save.php",
 				data:$(this).serialize(),
 				success: function(data){
-				$('#msg').html(data);
+					console.log(data);
+					$("#msg").show();
+						$('#msg').html(data);
 				$('#userForm').find('input').val('')
 		}});
 });

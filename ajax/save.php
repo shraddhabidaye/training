@@ -5,7 +5,7 @@ $fname = $_POST['name1'];
 $lname = $_POST['name2'];
 $contact = $_POST['contact'];
 $email = $_POST['email'];
-$password = md5($_POST['pass1']);
+$password = md5($_POST['psw']);
 
 
 $query1="INSERT INTO users(first_name,last_name,email,mobile_no,password) VALUES('$fname','$lname','$email','$contact','$password')";
