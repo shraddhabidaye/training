@@ -6,11 +6,13 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="ajax-js_script.js"></script>
 </head>
 <body>
 <div style="margin: auto;width: 60%;">
 	<div class="alert alert-success alert-dismissible" id="msg" style="display:none;">
 	  <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+
 	</div>
 
 	<div>
@@ -41,28 +43,23 @@
 					<div class="clearfix">
 						<button type="submit" name="submit">Sign Up</button>
 					</div>
+					<div class="container-login" id="login">
+		        <p> Wan't to login?</p>
+		      </div>
+					<div>
+					<button type="button" id="b1"><a href="index.php" style="color:#464646">Login</a></button>
+				</div>
 				</div>
 			</div>
 		</form>
 	</div>
-
-<script type="text/javascript">
-$(document).on('submit','#userForm',function(e){
-				e.preventDefault();
-
-				$.ajax({
-				method:"POST",
-				url: "save.php",
-				data:$(this).serialize(),
-				success: function(data){
-					console.log(data);
-					$("#msg").show();
-						$('#msg').html(data);
-				$('#userForm').find('input').val('')
-		}});
-});
-
+<script  type="text/javascript">
+$(document).ready(function(){
+	  $('#b1').hide();
+	$('#login').hide();
+	});
 </script>
-</body>
+
+
 </body>
 </html>
