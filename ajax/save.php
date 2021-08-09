@@ -18,5 +18,5 @@ $query1="INSERT INTO users(first_name,last_name,email,mobile_no,password) VALUES
     else{
      echo  "Error: " . $query1 . "<br>" . mysqli_error($db);
     }
-      
+
 ?>
