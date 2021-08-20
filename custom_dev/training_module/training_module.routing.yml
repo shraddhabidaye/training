@@ -5,3 +5,12 @@ training_module.welcome:
     _title: 'My first custom page in Drupal9'
   requirements:
     _permission: 'access content'
+
+
+training_module.customform:
+  path: '/custom-form-page'
+  defaults:
+    _controller: '\Drupal\training_module\Controller\FormController::customform'
+    _title: 'My first form page in Drupal9'
+  requirements:
+    _permission: 'access content'

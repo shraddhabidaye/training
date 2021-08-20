@@ -1,0 +1,84 @@
+<?php
+/**
+ * @file
+ * Contains \Drupal\training_module\Form\CustomForm.
+ */
+namespace Drupal\training_module\Form;
+use Drupal\Core\Form\FormBase;
+use Drupal\Core\Form\FormStateInterface;
+class CustomForm extends FormBase {
+  /**
+   * {@inheritdoc}
+   */
+  public function getFormId() {
+    return 'custom_form';
+  }
+  /**
+   * {@inheritdoc}
+   */
+   public function buildForm(array $form, FormStateInterface $form_state) {
+    $form['fname'] = array(
+      '#type' => 'textfield',
+      '#title' => t('First Name:'),
+      '#required' => TRUE,
+    );
+    $form['lname'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Last Name:'),
+      '#required' => TRUE,
+    );
+    $form['email'] = array(
+      '#type' => 'email',
+      '#title' => t('Email ID:'),
+      '#required' => TRUE,
+    );
+    $form['number'] = array (
+      '#type' => 'tel',
+      '#title' => t('Mobile no'),
+    );
+    $form['dob'] = array (
+      '#type' => 'date',
+      '#title' => t('DOB'),
+      '#required' => TRUE,
+    );
+    $form['gender'] = array (
+      '#type' => 'select',
+      '#title' => ('Gender'),
+      '#options' => array(
+        'Female' => t('Female'),
+        'male' => t('Male'),
+      ),
+    );
+    $form['actions']['#type'] = 'actions';
+    $form['actions']['submit'] = array(
+      '#type' => 'submit',
+      '#value' => $this->t('Save'),
+      '#button_type' => 'primary',
+    );
+    return $form;
+   }
+  /**
+    * {@inheritdoc}
+    */
+     public function validateForm(array &$form, FormStateInterface $form_state) {
+
+       if (strlen($form_state->getValue('number')) < 10)
+       {
+         $form_state->setErrorByName('number', $this->t('Mobile number is too short.'));
+       }
+       if (strlen($form_state->getValue('number')) > 10)
+       {
+         $form_state->setErrorByName('number', $this->t('Mobile number is too long.'));
+       }
+
+     }
+     /**
+      * {@inheritdoc}
+      */
+     public function submitForm(array &$form, FormStateInterface $form_state) {
+      // drupal_set_message($this->t('@fname ,Your application is being submitted!', array('@fname' => $form_state->getValue('fname'))));
+       foreach ($form_state->getValues() as $key => $value) {
+         drupal_set_message($key . ': ' . $value);
+       }
+     }
+  }
