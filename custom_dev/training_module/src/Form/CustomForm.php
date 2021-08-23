@@ -27,27 +27,14 @@ class CustomForm extends FormBase {
       '#title' => t('Last Name:'),
       '#required' => TRUE,
     );
-    $form['email'] = array(
+    $form['aboutme'] = array(
       '#type' => 'email',
-      '#title' => t('Email ID:'),
+      '#title' => t('About Me:'),
       '#required' => TRUE,
     );
     $form['number'] = array (
       '#type' => 'tel',
       '#title' => t('Mobile no'),
-    );
-    $form['dob'] = array (
-      '#type' => 'date',
-      '#title' => t('DOB'),
-      '#required' => TRUE,
-    );
-    $form['gender'] = array (
-      '#type' => 'select',
-      '#title' => ('Gender'),
-      '#options' => array(
-        'Female' => t('Female'),
-        'male' => t('Male'),
-      ),
     );
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = array(
