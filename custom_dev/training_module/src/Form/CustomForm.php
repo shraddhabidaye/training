@@ -28,7 +28,7 @@ class CustomForm extends FormBase {
       '#required' => TRUE,
     );
     $form['aboutme'] = array(
-      '#type' => 'email',
+      '#type' => 'textfield',
       '#title' => t('About Me:'),
       '#required' => TRUE,
     );
@@ -63,9 +63,10 @@ class CustomForm extends FormBase {
       * {@inheritdoc}
       */
      public function submitForm(array &$form, FormStateInterface $form_state) {
-      // drupal_set_message($this->t('@fname ,Your application is being submitted!', array('@fname' => $form_state->getValue('fname'))));
+       $this->messenger()->addMessage($this->t('@fname ,Your application is being submitted!', array('@fname' => $form_state->getValue('fname'))));
        foreach ($form_state->getValues() as $key => $value) {
-         drupal_set_message($key . ': ' . $value);
+        // drupal_set_message($key . ': ' . $value);
+        $this->messenger()->addMessage($key . ': ' . $value);
        }
      }
   }
