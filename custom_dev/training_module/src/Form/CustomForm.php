@@ -17,14 +17,9 @@ class CustomForm extends FormBase {
    * {@inheritdoc}
    */
    public function buildForm(array $form, FormStateInterface $form_state) {
-    $form['fname'] = array(
+    $form['name'] = array(
       '#type' => 'textfield',
-      '#title' => t('First Name:'),
-      '#required' => TRUE,
-    );
-    $form['lname'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Last Name:'),
+      '#title' => t('Full Name:'),
       '#required' => TRUE,
     );
     $form['aboutme'] = array(
