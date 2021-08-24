@@ -4,3 +4,5 @@ description: 'First custom module'
 package: Custom
 core: 8.x
 core_version_requirement: ^8 || ^9
+
+configure: training_module.admin_settings

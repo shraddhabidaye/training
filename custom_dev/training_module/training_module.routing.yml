@@ -14,3 +14,12 @@ training_module.customform:
     _title: 'My first form page in Drupal9'
   requirements:
     _permission: 'access content'
+
+
+training_module.admin_settings:
+  path: '/admin/config/system/training_module'
+  defaults:
+    _form: '\Drupal\training_module\Form\CustomConfigForm'
+    _title: 'My first form page in Drupal9'
+  requirements:
+    _permission: 'administration site configuration'
