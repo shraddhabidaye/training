@@ -34,6 +34,8 @@ public function buildForm(array $form, FormStateInterface $form_state)
     '#type' => 'textfield',
     '#title' => t('Full Name:'),
     '#required' => TRUE,
+    '#default_value' => $config->get('name'),
+
   );
   $form['aboutme'] = array(
      '#type' => 'textarea',
@@ -43,6 +45,8 @@ public function buildForm(array $form, FormStateInterface $form_state)
    $form['number'] = array (
      '#type' => 'tel',
      '#title' => t('Mobile no'),
+     '#default_value' => $config->get('number'),
+
    );
    return parent::buildForm($form, $form_state);
  }
@@ -63,6 +67,9 @@ public function validateForm(array &$form, FormStateInterface $form_state)
 
      $this->config('training_module.settings')
        ->set('aboutme', $form_state->getValue('aboutme'))
+       ->set('name', $form_state->getValue('name'))
+       ->set('number', $form_state->getValue('number'))
+
        ->save();
    }
 
