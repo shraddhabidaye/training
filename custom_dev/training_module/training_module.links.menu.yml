@@ -1,0 +1,13 @@
+training_module.training_config:
+  title: Training Custom
+  route_name: training_module.training_config
+  parent: system.admin_config
+  description: 'Manage configurations for learning.'
+  weight: 100
+
+training_module.training_custom_settings:
+  title: Custom Configuration
+  route_name: training_module.training_custom_settings
+  parent: training_module.training_config
+  description: 'Custom configuration for Training.'
+  weight: 10
