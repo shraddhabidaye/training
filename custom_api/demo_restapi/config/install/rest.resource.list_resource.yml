@@ -1,5 +1,5 @@
-id: demo_resource
-plugin_id: demo_resource
+id: list_resource
+plugin_id: list_resource
 granularity: method
 configuration:
   GET:
