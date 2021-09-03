@@ -6,8 +6,8 @@ dependencies:
     - basic_auth
     - demo_restapi
     - serialization
-id: Demo_Postapi
-plugin_id: Demo_Postapi
+id: demo_Postapi
+plugin_id: demo_Postapi
 granularity: resource
 configuration:
   methods:
