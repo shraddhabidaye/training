@@ -98,10 +98,10 @@ class CreateBlogResource extends ResourceBase
             // Use current user after pass authentication to validate access.
 
 
-            // if(!$this->currentUser->hasPermission($permission))
-            // {
-            //   throw new AccessDeniedHttpException();
-            // }
+            if(!$this->currentUser->hasPermission($permission))
+            {
+              throw new AccessDeniedHttpException();
+            }
 
               $node = \Drupal::entityTypeManager()->getStorage('node')->create([
               'type' => 'blog',
