@@ -13,15 +13,15 @@ use Psr\Log\LoggerInterface;
  * Provides a resource to get view modes by entity and bundle.
  *
  * @RestResource(
- *   id = "list_resource",
- *   label = @Translation("list rest resource"),
+ *   id = "Bloglist_resource",
+ *   label = @Translation("Bloglist rest resource"),
  *   uri_paths = {
- *     "canonical" = "/demo_restapi/list_resource"
+ *     "canonical" = "/api/blog_list"
  *   }
  * )
  */
 
- class ListResource extends ResourceBase
+ class BlogListResource extends ResourceBase
  {
    /**
   * A current user instance.

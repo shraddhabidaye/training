@@ -1,5 +1,5 @@
-id: list_resource
-plugin_id: list_resource
+id: Bloglist_resource
+plugin_id: Bloglist_resource
 granularity: method
 configuration:
   GET:
