@@ -1,0 +1,18 @@
+uuid: 6c238428-9701-4c93-ae8f-28fdbdd96b0b
+langcode: en
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - demo_restapi
+    - serialization
+id: Demo_Postapi
+plugin_id: Demo_Postapi
+granularity: resource
+configuration:
+  methods:
+    - POST
+  formats:
+    - json
+  authentication:
+    - basic_auth
