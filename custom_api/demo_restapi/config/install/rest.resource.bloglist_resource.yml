@@ -1,0 +1,19 @@
+uuid: d79a5a39-c84c-4774-b95f-a17b96fa5b9f
+langcode: en
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - demo_restapi
+    - serialization
+_core:
+  default_config_hash: Oc3bNAJu2GbED7uY43PzLuXYl7TDIPDof0BRkqL3NnQ
+id: bloglist_resource
+plugin_id: bloglist_resource
+granularity: method
+configuration:
+  GET:
+    supported_formats:
+      - json
+    supported_auth:
+      - basic_auth
