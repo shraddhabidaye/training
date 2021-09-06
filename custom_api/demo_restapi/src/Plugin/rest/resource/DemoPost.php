@@ -57,7 +57,7 @@ use Psr\Log\LoggerInterface;
    $plugin_definition,
    array $serializer_formats,
    LoggerInterface $logger,
-   AccountProxyInterface($current_user)
+   AccountProxyInterface $current_user)
    {
      parent::__construct($configuration, $plugin_id, $plugin_definition, $serializer_formats, $logger);
 
