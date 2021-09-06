@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Contains Drupal\demo_restapi\Plugin\rest\resource\BlogListResource.
+ */
+
 namespace Drupal\demo_restapi\Plugin\rest\resource;
 
 use Drupal\Core\Session\AccountProxyInterface;
@@ -10,7 +15,7 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Psr\Log\LoggerInterface;
 
 /**
- * Provides a resource to get view modes by entity and bundle.
+ * Provides a resource to get list by Blogs.
  *
  * @RestResource(
  *   id = "bloglist_resource",
@@ -23,11 +28,12 @@ use Psr\Log\LoggerInterface;
 
  class BlogListResource extends ResourceBase
  {
+
    /**
-  * A current user instance.
-  *
-  * @var \Drupal\Core\Session\AccountProxyInterface
-  */
+   * A current user instance.
+   *
+   * @var \Drupal\Core\Session\AccountProxyInterface
+   */
    protected $currentUser;
 
    /**
@@ -52,15 +58,15 @@ use Psr\Log\LoggerInterface;
    $plugin_definition,
    array $serializer_formats,
    LoggerInterface $logger,
-   AccountProxyInterface $current_user)
-    {
-       parent::__construct($configuration, $plugin_id, $plugin_definition, $serializer_formats, $logger);
+   AccountProxyInterface($current_user)
+   {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $serializer_formats, $logger);
 
-       $this->currentUser = $current_user;
-    }
-    /**
-  * {@inheritdoc}
-  */
+    $this->currentUser = $current_user;
+   }
+   /**
+   * {@inheritdoc}
+   */
    public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition)
    {
      return new static(
@@ -76,7 +82,7 @@ use Psr\Log\LoggerInterface;
    /**
    * Responds to GET requests.
    *
-   * Returns a list of bundles for specified entity.
+   * Returns a list for blog entity.
    *
    * @throws \Symfony\Component\HttpKernel\Exception\HttpException
    *   Throws exception expected.
@@ -84,14 +90,16 @@ use Psr\Log\LoggerInterface;
    public function get()
    {
      // Use current user after pass authentication to validate access.
-    if (!$this->currentUser->hasPermission('access content')) {
+    if (!$this->currentUser->hasPermission('access content'))
+    {
       throw new AccessDeniedHttpException();
     }
     $entities = \Drupal::entityTypeManager()
-      ->getStorage('node')
-      ->loadByProperties(['type' => 'blog']);
-    foreach ($entities as $entity) {
-      $result[$entity->id()] = $entity->title->value;
+    ->getStorage('node')
+    ->loadByProperties(['type' => 'blog']);
+    foreach ($entities as $entity)
+    {
+     $result[$entity->id()] = $entity->title->value;
     }
 
     $response = new ResourceResponse($result);
