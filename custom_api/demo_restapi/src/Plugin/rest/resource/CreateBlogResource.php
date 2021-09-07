@@ -15,7 +15,8 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Psr\Log\LoggerInterface;
 use Drupal\node\Entity\Node;
-
+use \Drupal\file\Entity\File;
+//use Drupal\demo_restapi\Base64Image;
 /**
  * Creates a new node in Blog entity.
  *
@@ -93,17 +94,41 @@ class CreateBlogResource extends ResourceBase
     {
       \Drupal::logger('demo_restapi')->debug('<pre>' . print_r($data, TRUE) . '</pre>');
 
-      if(!$this->currentUser->hasPermission($permission))
+      if(!$this->currentUser->hasPermission('access content'))
       {
        throw new AccessDeniedHttpException();
       }
 
+      $path = 'public://';
+      if (!empty($data['image']))
+      {
+        $base_64_str = $data['image'];
+        // Clean base64 string.
+        $pos = strpos($base_64_str, ',');
+        if ($pos !== FALSE)
+        {
+          $base_64_str = substr($base_64_str, ++$pos);
+        }
+        // Decode base64 data.
+        $base64 = base64_decode($base_64_str);
+      }
+      $filename = $path . $data['image_filename'];
+        // Save the file.
+      $file = file_save_data($base64, $filename, FILE_EXISTS_REPLACE);
+
+
+      $fid1 = $file->id();
+
       //$node = \Drupal::entityTypeManager()->getStorage('node')->create([
       $node = Node::create([
-      'type' => 'blog',
-      'title' => $data['title'],
-      'body' => $data['body'],
-      'field_blog_category' =>  $data['category'],
+        'type' => 'blog',
+        'title' => $data['title'],
+        'body' => $data['body'],
+        'field_blog_category' =>  $data['category'],
+        'field_blog_image' => [
+          'target_id' => $fid1,
+          'alt' => $data['image_filename'],
+        ],
       ]);
 
       $node->enforceIsNew(TRUE);
