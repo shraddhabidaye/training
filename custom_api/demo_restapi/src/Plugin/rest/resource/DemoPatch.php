@@ -127,7 +127,11 @@ use Psr\Log\LoggerInterface;
       }
       if ($data['image'])
       {
-        $node->field_blog_image->[target_id -> $fid1,alt-> $data['image_filename']];
+        $field_image = array(
+          'target_id' => $fid1,
+          'alt' => $data['image_filename'],
+          );
+        $node->field_blog_image = $field_image;
       }
       $node->save();
       \Drupal::logger('demo_restapi')->debug('<pre>' . print_r($node, TRUE) . '</pre>');
