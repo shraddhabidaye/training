@@ -9,7 +9,7 @@ namespace Drupal\demo_restapi\Plugin\rest\resource;
 
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\rest\Plugin\ResourceBase;
-use Drupal\rest\ModifiedResourceResponse;
+use Drupal\rest\ResourceResponse;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -138,6 +138,7 @@ use Psr\Log\LoggerInterface;
 
 
       return new ModifiedResourceResponse(NULL, 204);
+
 
     }
 
