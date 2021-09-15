@@ -1,0 +1,6 @@
+name: Blog List API
+description: List the blogs present in the instance.
+package: Custom
+type: module
+core: 8.x
+core_version_requirement: ^8 || ^9
