@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Contains Drupal\BlogList\Plugin\rest\resource\BlogListResource.
+ * Contains Drupal\blog_list\Plugin\rest\resource\BlogListResource.
  */
 
-namespace Drupal\BlogList\Plugin\rest\resource;
+namespace Drupal\blog_list\Plugin\rest\resource;
 
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\rest\Plugin\ResourceBase;
