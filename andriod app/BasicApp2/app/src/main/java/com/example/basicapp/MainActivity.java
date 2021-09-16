@@ -1,9 +1,11 @@
 package com.example.basicapp;
 
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -14,6 +16,9 @@ import com.android.volley.toolbox.Volley;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,13 +45,24 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.e("Rest Response",error.toString());
-                       // textView.setText(error.toString());
+                        textView.setText(error.toString());
 
                     }
-                }
+                })
+                {
 
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        Map<String, String> headers = new HashMap<>();
+                        String credentials = "admin:admin";
+                        String auth = "Basic "
+                                + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
+                        headers.put("Content-Type", "application/json");
+                        headers.put("Authorization", auth);
+                        return headers;
+                    }
 
-        );
+                };
 
         requestQueue.add(objectRequest);
 
