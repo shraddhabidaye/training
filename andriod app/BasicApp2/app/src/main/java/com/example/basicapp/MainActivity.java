@@ -19,21 +19,20 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        TextView textView = (TextView) findViewById(R.id.textView2);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        TextView textView = findViewById(R.id.textView1);
+
 
         String URL="https://dev-team-shivaji.pantheonsite.io/api/blog_list?_format=json";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        JsonObjectRequest objectRequest = new JsonObjectRequest(
-                Request.Method.GET,
-                URL,
-                null,
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, URL, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.e("Rest Response",response.toString());
-                        textView.setText(response.toString());
+                        textView.setText("Response: " + response.toString());
 
                     }
                 },
