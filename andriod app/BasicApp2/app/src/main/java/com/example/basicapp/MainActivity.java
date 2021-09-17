@@ -3,6 +3,7 @@ package com.example.basicapp;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -27,45 +28,45 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+    public void onClick(View v){
         TextView textView = findViewById(R.id.textView1);
 
+        String URL = "https://dev-team-shivaji.pantheonsite.io/api/blog_list?_format=json";
+    RequestQueue requestQueue = Volley.newRequestQueue(this);
+    JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, URL, null,
+            new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    Log.e("Rest Response", response.toString());
+                    textView.setText("Response: " + response.toString());
 
-        String URL="https://dev-team-shivaji.pantheonsite.io/api/blog_list?_format=json";
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, URL, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.e("Rest Response",response.toString());
-                        textView.setText("Response: " + response.toString());
+                }
+            },
+            new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e("Rest Response", error.toString());
+                    textView.setText(error.toString());
 
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("Rest Response",error.toString());
-                        textView.setText(error.toString());
+                }
+            }) {
 
-                    }
-                })
-                {
+        @Override
+        public Map<String, String> getHeaders() throws AuthFailureError {
+            Map<String, String> headers = new HashMap<>();
+            String credentials = "admin:admin";
+            String auth = "Basic "
+                    + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
+            headers.put("Content-Type", "application/json");
+            headers.put("Authorization", auth);
+            return headers;
+        }
 
-                    @Override
-                    public Map<String, String> getHeaders() throws AuthFailureError {
-                        Map<String, String> headers = new HashMap<>();
-                        String credentials = "admin:admin";
-                        String auth = "Basic "
-                                + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
-                        headers.put("Content-Type", "application/json");
-                        headers.put("Authorization", auth);
-                        return headers;
-                    }
-
-                };
+    };
 
         requestQueue.add(objectRequest);
 
 
-    }
+}
 }
