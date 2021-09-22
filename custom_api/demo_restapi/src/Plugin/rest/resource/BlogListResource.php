@@ -97,9 +97,16 @@ use Psr\Log\LoggerInterface;
     $entities = \Drupal::entityTypeManager()
     ->getStorage('node')
     ->loadByProperties(['type' => 'blog']);
-    foreach ($entities as $entity)
+    if(!empty($entities))
     {
-     $result[$entity->id()] = $entity->title->value;
+      foreach ($entities as $entity)
+      {
+       $result[$entity->id()] = $entity->title->value;
+      }
+    }
+    else
+    {
+      $result = "There are no blog entries yet.";
     }
 
     $response = new ResourceResponse($result);

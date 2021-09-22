@@ -99,42 +99,83 @@ class CreateBlogResource extends ResourceBase
        throw new AccessDeniedHttpException();
       }
 
-      $path = 'public://';
-      if (!empty($data['image']))
+      $result = [];
+      $message = '';
+      $error = FALSE;
+      foreach ($data as $field => $value)
       {
-        $base_64_str = $data['image'];
-        // Clean base64 string.
-        $pos = strpos($base_64_str, ',');
-        if ($pos !== FALSE)
+        if (empty($value))
         {
-          $base_64_str = substr($base_64_str, ++$pos);
+          $message = ' Entity: ' . $field . ' field should not be empty.';
+          $status_code = 422;
+          $error = TRUE;
+          break;
         }
-        // Decode base64 data.
-        $base64 = base64_decode($base_64_str);
+
+        if($field == 'email')
+        {
+          $email = $data['email'];
+          if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+          {
+            $message = 'Invalid input ' . $field . ' field .It should be in format: Username@domainname.com.';
+            $status_code = 422;
+            $error = TRUE;
+            break;
+          }
+        }
       }
-      $filename = $path . $data['image_filename'];
-        // Save the file.
-      $file = file_save_data($base64, $filename, FILE_EXISTS_REPLACE);
+
+      if ($error == TRUE && !empty($message))
+      {
+        $result = [
+          'status' => FALSE,
+          'error' => [
+            'message' => $message,
+            'statusCode' => $status_code,
+          ],
+        ];
+      }
+      else
+      {
+        $path = 'public://';
+        if (!empty($data['image']))
+        {
+          $base_64_str = $data['image'];
+          // Clean base64 string.
+          $pos = strpos($base_64_str, ',');
+          if ($pos !== FALSE)
+          {
+            $base_64_str = substr($base_64_str, ++$pos);
+          }
+          // Decode base64 data.
+          $base64 = base64_decode($base_64_str);
+        }
+        $filename = $path . $data['image_filename'];
+          // Save the file.
+        $file = file_save_data($base64, $filename, FILE_EXISTS_REPLACE);
 
 
-      $fid1 = $file->id();
+        $fid1 = $file->id();
 
-      //$node = \Drupal::entityTypeManager()->getStorage('node')->create([
-      $node = Node::create([
-        'type' => 'blog',
-        'title' => $data['title'],
-        'body' => $data['body'],
-        'field_blog_category' =>  $data['category'],
-        'field_blog_image' => [
-          'target_id' => $fid1,
-          'alt' => $data['image_filename'],
-        ],
-      ]);
+        //$node = \Drupal::entityTypeManager()->getStorage('node')->create([
+        $node = Node::create([
+          'type' => 'blog',
+          'title' => $data['title'],
+          'body' => $data['body'],
+          'field_blog_category' =>  $data['category'],
+          'field_email' => $data['email'],
+          'field_blog_image' => [
+            'target_id' => $fid1,
+            'alt' => $data['image_filename'],
+          ],
+        ]);
 
-      $node->enforceIsNew(TRUE);
-      $node->save();
+        $node->enforceIsNew(TRUE);
+        $node->save();
 
-      $result[$node->id()] = $node->title->value;
+        $result[$node->id()] = $node->title->value;
+      }
+
 
       $response = new ResourceResponse($result);
       $response->addCacheableDependency($result);
