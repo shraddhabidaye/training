@@ -94,16 +94,23 @@ use Psr\Log\LoggerInterface;
     {
       throw new AccessDeniedHttpException();
     }
-    $entities = \Drupal::entityTypeManager()
-    ->getStorage('node')
-    ->loadByProperties(['type' => 'blog']);
-    foreach ($entities as $entity)
-    {
-     $result[$entity->id()] = $entity->title->value;
+    $entities = \Drupal::entityTypeManager()->getStorage('node')->loadByProperties(['type' => 'blog']);
+    if(!empty($entities))
+    {$result=array();
+      foreach ($entities as $entity)
+      {
+        $result[] =  array('id' => $entity->id(), 'title' => $entity->title->value);
+        $resultArray['response'] = $result;
+       //$result[$entity->id()] = $entity->title->value;
+      }
+
+    }
+    else {
+      $resultArray = "There are no blog entries yet.";
     }
 
-    $response = new ResourceResponse($result);
-    $response->addCacheableDependency($result);
+    $response = new ResourceResponse($resultArray);
+    $response->addCacheableDependency($resultArray);
     return $response;
    }
  }
