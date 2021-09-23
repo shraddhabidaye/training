@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:minWidth="100dp"
     tools:context=".RegisterActivity">
 
     <TextView
@@ -36,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="6dp"
         android:layout_marginEnd="57dp"
         android:text="Email"
         app:layout_constraintEnd_toStartOf="@+id/editText3"
@@ -47,15 +48,15 @@
         android:id="@+id/editText3"
         android:layout_width="0dp"
         android:layout_height="46dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="83dp"
-        android:layout_marginBottom="42dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="81dp"
+        android:layout_marginBottom="88dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintBottom_toBottomOf="@+id/spinner1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintTop_toTopOf="@+id/editText2"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView
@@ -87,9 +88,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="25dp"
         android:text="Image Name"
-        app:layout_constraintBottom_toTopOf="@+id/textView8"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editText4"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -97,48 +97,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="38dp"
         android:layout_marginBottom="299dp"
-        android:text="Enter Image File in Base64 format"
+        android:text="Select an Image:"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button4"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editText5"
-        android:layout_width="0dp"
-        android:layout_height="128dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginBottom="65dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        android:maxLines="500"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toTopOf="@+id/textView7"
-        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="89dp"
-        android:layout_marginEnd="89dp"
+        android:layout_marginStart="139dp"
         android:layout_marginBottom="53dp"
         android:onClick="onSaveClick"
         android:text="save"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editText2"
-        app:layout_constraintStart_toEndOf="@+id/textView5" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="29dp"
-        android:layout_marginEnd="93dp"
+        android:layout_marginEnd="90dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
@@ -151,7 +133,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:layout_marginEnd="94dp"
+        android:layout_marginEnd="91dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
@@ -164,9 +146,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
+        android:layout_marginBottom="13dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView7"
+        app:layout_constraintBottom_toTopOf="@+id/textView8"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintStart_toStartOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="92dp"
+        android:onClick="onSelectClick"
+        android:text="Select Image"
+        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        tools:ignore="TouchTargetSizeCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>
