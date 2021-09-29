@@ -10,11 +10,9 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.Editable;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -30,8 +28,8 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
@@ -39,32 +37,28 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
-public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+public class CreateBlogActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     String category,image;
-    //ImageView imageView;
+    ImageView imageView;
     Spinner spinner;
     EditText ed5;
-    ImageView img;
-    Bitmap bitmap;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_create_blog);
 
-        img=(ImageView)findViewById(R.id.imageView);
         spinner = findViewById(R.id.spinner1);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.blogCategory, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
-
     }
 
     @Override
@@ -90,12 +84,12 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
     public void onSelectClick(View v)
     {
-        if (ContextCompat.checkSelfPermission(RegisterActivity.this,
+        if (ContextCompat.checkSelfPermission(CreateBlogActivity.this,
                 Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED)
         {
             // when permission is nor granted
             // request permission
-            ActivityCompat.requestPermissions(RegisterActivity.this
+            ActivityCompat.requestPermissions(CreateBlogActivity.this
                     , new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},100);
 
         }
@@ -116,16 +110,16 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         // set type
         intent.setType("image/*");
         // start activity result
-        startActivityForResult(Intent.createChooser(intent,"Select Image"),1);
+        startActivityForResult(Intent.createChooser(intent,"Select Image"),100);
 
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull  String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         // check condition
-        if (requestCode==1 && grantResults[0]==PackageManager.PERMISSION_GRANTED)
+        if (requestCode==100 && grantResults[0]==PackageManager.PERMISSION_GRANTED)
         {
             // when permission
             // is granted
@@ -142,34 +136,24 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // check condition
-        if (requestCode==1 && resultCode==RESULT_OK && data!=null)
+        if (requestCode==100 && resultCode==RESULT_OK && data!=null)
         {
             // when result is ok
             // initialize uri
             Uri uri=data.getData();
             // Initialize bitmap
             try {
-                InputStream inputStream=getContentResolver().openInputStream(uri);
-                bitmap= BitmapFactory.decodeStream(inputStream);
-                img.setImageBitmap(bitmap);
-
-                ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
-                byte[] bytesofimage=byteArrayOutputStream.toByteArray();
-                image=android.util.Base64.encodeToString(bytesofimage, Base64.DEFAULT);
-
-//
-//                Bitmap bitmap= MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
-//                // initialize byte stream
-//                ByteArrayOutputStream stream=new ByteArrayOutputStream();
-//                // compress Bitmap
-//                bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
-//                // Initialize byte array
-//                byte[] bytes=stream.toByteArray();
-//                // get base64 encoded string
-//                image= Base64.encodeToString(bytes,Base64.DEFAULT);
-//                ed5 = findViewById(R.id.editText5);
-////               System.out.println(image);
+                Bitmap bitmap= MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
+                // initialize byte stream
+                ByteArrayOutputStream stream=new ByteArrayOutputStream();
+                // compress Bitmap
+                bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
+                // Initialize byte array
+                byte[] bytes=stream.toByteArray();
+                // get base64 encoded string
+                image= Base64.encodeToString(bytes,Base64.DEFAULT);
+                ed5 = findViewById(R.id.editText5);
+//               System.out.println(image);
 
 
             } catch (IOException e) {
@@ -178,52 +162,47 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         }
     }
 
-    public void onSaveClick(View v) throws JSONException {
+    public void onSveClick(View v) throws IOException, JSONException {
         EditText ed1,ed2,ed3,ed4;
         ed1 = (EditText)findViewById(R.id.editText1);
         ed2 = (EditText)findViewById(R.id.editText2);
         ed3 = (EditText)findViewById(R.id.editText3);
         ed4 = (EditText)findViewById(R.id.editText4);
 
-        String title = ed1.getText().toString().trim();
+        String title = ed1.getText().toString();
         String body = ed2.getText().toString();
         String email = ed3.getText().toString();
         String image_filename = ed4.getText().toString();
 
 
-        String url = "https://dev-team-shivaji.pantheonsite.io/api/create_blog?_format=json";
-
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        String url = "https://dev-team-shivaji.pantheonsite.io/api/create_blog";
         JSONObject jsonobject = new JSONObject();
 
-        jsonobject.put("title", title);
-        jsonobject.put("body", body);
-        jsonobject.put("email", email);
-        jsonobject.put("category", category);
-        jsonobject.put("image_file",image_filename);
-        jsonobject.put("image",image);
+        jsonobject.put("title", "title");
+        jsonobject.put("body", "104");
+        jsonobject.put("email", "s@gmail.com");
+        jsonobject.put("category", "4");
 
-       // StringRequest stringRequest = new StringRequest(Request.Method.POST, url,new Response.Listener<String>() {
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,url,jsonobject, new Response.Listener<JSONObject>() {
-        @Override
-            public void onResponse(JSONObject response)
-            {
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,url,jsonobject,
 
-                img.setImageResource(R.drawable.ic_launcher_foreground);
-                Log.e("Rest Response", response.toString());
-                Toast.makeText(RegisterActivity.this,response.toString(), Toast.LENGTH_LONG).show();
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("TAG", response.toString());
+                        Toast.makeText(CreateBlogActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
 
-            }
-        },new Response.ErrorListener(){
+
+                    }
+                }, new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("Rest Response", error.toString());
+                VolleyLog.d("TAG", "Error: " + error.getMessage());
+                Toast.makeText(CreateBlogActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
 
-                Toast.makeText(RegisterActivity.this,error.toString(), Toast.LENGTH_LONG).show();
             }
-        })
-        {
+        }) {
+
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
@@ -234,28 +213,9 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 headers.put("Authorization", auth);
                 return headers;
             }
-
-//            @Override
-//            protected Map<String, String > getParams() {
-//
-//                Map<String, String> params = new HashMap<String, String>();
-//                params.put("title", title);
-//                params.put("body", body);
-//                params.put("email", email);
-//                params.put("category",category);
-//              //  params.put("image",image );
-//               // params.put("image_filename", image_filename);
-//
-//                return params;
-//            }
-
-
-
-
         };
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(jsonObjReq);
 
     }
-
-
 }
