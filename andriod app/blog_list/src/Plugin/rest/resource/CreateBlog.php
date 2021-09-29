@@ -157,6 +157,7 @@ class CreateBlog extends ResourceBase
 
         $fid1 = $file->id();
 
+
         //$node = \Drupal::entityTypeManager()->getStorage('node')->create([
         $node = Node::create([
           'type' => 'blog',
@@ -174,6 +175,7 @@ class CreateBlog extends ResourceBase
         $node->save();
 
         $result[$node->id()] = $node->title->value;
+
       }
 
       $response = new ResourceResponse($result);
