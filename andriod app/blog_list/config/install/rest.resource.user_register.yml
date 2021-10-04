@@ -1,0 +1,9 @@
+id: user_regiser
+plugin_id: user_regiser
+granularity: method
+configuration:
+  POST:
+    supported_formats:
+      - json
+    supported_auth:
+      - cookie
