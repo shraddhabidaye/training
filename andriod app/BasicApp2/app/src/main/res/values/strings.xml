@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">Basic App</string>
-    <string-array name="blogCategory">
-        <item>Food</item>
-        <item>Political</item>
-        <item>Travel</item>
-        <item>Study</item>
-    </string-array>
-</resources>
