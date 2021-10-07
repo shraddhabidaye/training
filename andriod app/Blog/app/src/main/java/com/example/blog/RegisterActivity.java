@@ -155,7 +155,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 img.setImageResource(R.drawable.ic_launcher_foreground);
                 Log.e("Rest Response", response.toString());
-                Toast.makeText(RegisterActivity.this,"Registered successfully.Please check your mailbox for logging in.", Toast.LENGTH_LONG).show();
+                Toast.makeText(RegisterActivity.this,response.toString(), Toast.LENGTH_LONG).show();
 
             }
         },new Response.ErrorListener(){

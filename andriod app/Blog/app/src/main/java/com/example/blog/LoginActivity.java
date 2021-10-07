@@ -27,7 +27,7 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
     EditText ed1,ed2;
-    String username,password;
+    String username,password,name;
     int  count =0;
     String logout_token,csrf_token =null,cookie;
 
@@ -65,10 +65,18 @@ public class LoginActivity extends AppCompatActivity {
                 JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, url, jsonobject, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.e("msg:","response method");
 
                         Log.e("Rest Response", response.toString());
-                        Toast.makeText(LoginActivity.this, response.toString(), Toast.LENGTH_LONG).show();
+                        String json = "...";
+
+                        try {
+                            JSONObject obj = new JSONObject(json);
+                            name= obj.getJSONObject("current_user").getString("name");
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        Toast.makeText(LoginActivity.this, "Welcome ", Toast.LENGTH_LONG).show();
 
                         try {
                             logout_token = response.getString("logout_token");
@@ -145,16 +153,6 @@ public class LoginActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             Log.e("msg:","onPost method");
-//
-//            //create an intent to start the ListActivity
-//            Intent intent = new Intent(LoginActivity.this, ListActivity.class);
-//            //pass the session_id and session_name to ListActivity
-//
-//                intent.putExtra("csrf_token", csrf_token);
-//                intent.putExtra("logout_token", logout_token);
-//                intent.putExtra("cookie", cookie);
-//
-//                startActivity(intent);
 
         }
     }
