@@ -30,7 +30,7 @@ import java.util.Map;
 
 public class ListActivity extends AppCompatActivity {
 
-    String cookie,csrf_token,logout_token;
+    String cookie,csrf_token,logout_token,credentials;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,10 +42,10 @@ public class ListActivity extends AppCompatActivity {
 
             csrf_token = extras.getString("csrf_token");
             logout_token =extras.getString("logout_token");
-
+            credentials = extras.getString("credentials");
             Log.i("csrf",csrf_token);
             Log.i("logout",logout_token);
-
+            Log.i("credentials",credentials);
         }
     }
 
@@ -96,9 +96,11 @@ public class ListActivity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
 
-              //  headers.put("X-CSRF-Token",csrf_token);
+                headers.put("X-CSRF-Token",csrf_token);
                 headers.put("Content-Type", "application/json");
                 headers.put("Cookie", cookie);
+                String auth = "Basic "+ Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
+                headers.put("Authorization", auth);
                 return headers;
             }
 
@@ -114,47 +116,52 @@ public class ListActivity extends AppCompatActivity {
         intent.putExtra("cookie",cookie);
         intent.putExtra("csrf_token",csrf_token);
         intent.putExtra("logout_token",logout_token);
+        intent.putExtra("credentials",credentials);
 
         //start the AddArticle activity
         startActivity(intent);
     }
     public void onLogout(View v)
-    {
-        String URL = "https://dev-team-shivaji.pantheonsite.io/user/logout?_format=json"+"&token="+logout_token;
-        Log.i("url:",URL);
-        RequestQueue requestQueue1 = Volley.newRequestQueue(this);
-        JsonObjectRequest objectRequest1 = new JsonObjectRequest(Request.Method.GET, URL, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.e("Rest Response", response.toString());
-
-                        Intent intent = new Intent(ListActivity.this, LoginActivity.class);
-
-                        startActivity(intent);
-
-                    }
-
-                },
-                new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("Error",error.toString());
-
-            }
-        })
-        {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<>();
-
-                //  headers.put("X-CSRF-Token",csrf_token);
-                headers.put("Content-Type", "application/json");
-               // headers.put("Cookie", cookie);
-                return headers;
-            }
-
-        };
-        requestQueue1.add(objectRequest1);
+   {
+//        String URL = "https://dev-team-shivaji.pantheonsite.io/user/logout?_format=json&token="+logout_token.toString();
+//        Log.i("url:",URL);
+//        RequestQueue requestQueue1 = Volley.newRequestQueue(this);
+//        JsonObjectRequest objectRequest1 = new JsonObjectRequest(Request.Method.POST, URL, null,
+//                new Response.Listener<JSONObject>() {
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//                        Log.e("Rest Response", response.toString());
+//
+//                        Intent intent = new Intent(ListActivity.this, LoginActivity.class);
+//
+//                        startActivity(intent);
+//
+//                    }
+//
+//                },
+//                new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Log.e("Error",error.toString());
+//
+//            }
+//        })
+//        {
+//            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                Map<String, String> headers = new HashMap<>();
+//
+//               // headers.put("X-CSRF-Token",csrf_token);
+//                headers.put("Content-Type", "application/json");
+//                headers.put("User-Agent","PostmanRuntime/7.28.4");
+//                //headers.put("Cookie", cookie);
+//                return headers;
+//            }
+//
+//        };
+//        requestQueue1.add(objectRequest1);
+        Intent intent = new Intent(ListActivity.this,LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }

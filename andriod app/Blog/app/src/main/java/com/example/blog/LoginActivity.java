@@ -28,8 +28,7 @@ import java.util.Map;
 public class LoginActivity extends AppCompatActivity {
     EditText ed1,ed2;
     String username,password,name;
-    int  count =0;
-    String logout_token,csrf_token =null,cookie;
+    String logout_token,csrf_token,cookie;
 
 
     @Override
@@ -50,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, "Please fill the required fields", Toast.LENGTH_LONG).show();
             }
             else {
+
                 String url = "https://dev-team-shivaji.pantheonsite.io/user/login?_format=json";
 
                 RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -67,16 +67,16 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
 
                         Log.e("Rest Response", response.toString());
-                        String json = "...";
 
                         try {
+                            String json = response.toString();
                             JSONObject obj = new JSONObject(json);
-                            name= obj.getJSONObject("current_user").getString("name");
+                            name= obj.getJSONObject("current_user").getString("name");//(current user)
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        Toast.makeText(LoginActivity.this, "Welcome ", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, "Welcome "+name, Toast.LENGTH_LONG).show();
 
                         try {
                             logout_token = response.getString("logout_token");
@@ -90,6 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                             intent.putExtra("csrf_token", csrf_token);
                             intent.putExtra("logout_token", logout_token);
                             intent.putExtra("cookie", cookie);
+                            intent.putExtra("credentials",username+":"+password);
 
                             startActivity(intent);
                         } catch (JSONException e) {

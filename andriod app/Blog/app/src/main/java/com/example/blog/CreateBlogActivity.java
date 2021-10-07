@@ -43,7 +43,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CreateBlogActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    String category,image,cookie,csrf_token,logout_token;
+    String category,image,cookie,csrf_token,logout_token,credentials;
     Spinner spinner;
     EditText ed5;
     ImageView img;
@@ -59,13 +59,13 @@ public class CreateBlogActivity extends AppCompatActivity implements AdapterView
             Log.i("cookie",cookie);
 
             csrf_token = extras.getString("csrf_token");
-            logout_token =extras.getString("logout_token");
-
+            logout_token = extras.getString("logout_token");
+            credentials = extras.getString("credentials");
             Log.i("csrf",csrf_token);
             Log.i("logout",logout_token);
 
         }
-        img=(ImageView)findViewById(R.id.imageView);
+        img=(ImageView)findViewById(R.id.imageView1);
         spinner = findViewById(R.id.spinner1);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.blogCategory, android.R.layout.simple_spinner_item);
@@ -122,7 +122,7 @@ public class CreateBlogActivity extends AppCompatActivity implements AdapterView
         // set type
         intent.setType("image/*");
         // start activity result
-        startActivityForResult(Intent.createChooser(intent,"Select Image"),1);
+        startActivityForResult(Intent.createChooser(intent,"Select Image"),100);
 
     }
 
@@ -131,7 +131,7 @@ public class CreateBlogActivity extends AppCompatActivity implements AdapterView
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         // check condition
-        if (requestCode==1 && grantResults[0]==PackageManager.PERMISSION_GRANTED)
+        if (requestCode==100 && grantResults[0]==PackageManager.PERMISSION_GRANTED)
         {
             // when permission
             // is granted
@@ -148,7 +148,7 @@ public class CreateBlogActivity extends AppCompatActivity implements AdapterView
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // check condition
-        if (requestCode==1 && resultCode==RESULT_OK && data!=null)
+        if (requestCode==100 && resultCode==  RESULT_OK && data!=null)
         {
             // when result is ok
             // initialize uri
@@ -221,8 +221,12 @@ public class CreateBlogActivity extends AppCompatActivity implements AdapterView
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
+
+                headers.put("X-CSRF-Token",csrf_token);
                 headers.put("Content-Type", "application/json");
                 headers.put("Cookie",cookie);
+                String auth = "Basic "+ Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
+                headers.put("Authorization", auth);
 
                 return headers;
             }
@@ -237,7 +241,7 @@ public class CreateBlogActivity extends AppCompatActivity implements AdapterView
         String URL = "https://dev-team-shivaji.pantheonsite.io/user/logout?_format=json"+"&token="+logout_token;
         Log.i("url:",URL);
         RequestQueue requestQueue1 = Volley.newRequestQueue(this);
-        JsonObjectRequest objectRequest1 = new JsonObjectRequest(Request.Method.GET, URL, null,
+        JsonObjectRequest objectRequest1 = new JsonObjectRequest(Request.Method.POST, URL, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -270,6 +274,9 @@ public class CreateBlogActivity extends AppCompatActivity implements AdapterView
 
         };
         requestQueue1.add(objectRequest1);
+        Intent intent = new Intent(CreateBlogActivity.this,LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
 
     }
 
