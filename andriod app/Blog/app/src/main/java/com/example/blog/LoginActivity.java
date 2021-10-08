@@ -143,7 +143,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 };
-
+                requestQueue.getCache().clear();
                 requestQueue.add(jsonObjReq);
             }
 
